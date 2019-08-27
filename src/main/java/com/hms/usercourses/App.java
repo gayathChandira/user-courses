@@ -1,22 +1,19 @@
 package com.hms.usercourses;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@SpringBootApplication(scanBasePackages = "com.hms.usercourses")
+@EnableAutoConfiguration
 public class App {
 
-    private static UserDAO userDao;
+
     public static void main(String[] args){
+        SpringApplication.run(App.class, args);
 
-        userDao = new UserDAOImpl();
-
-       // User user1 =
-
-        JdbcTemplate jdbcTemplate = dbConnection.getConnection();
-        String sql = "INSERT INTO user_details (f_name, l_name, age, email, contact) VALUES (?,?,?,?,?);";
-        int result = jdbcTemplate.update(sql,"saman","kumara",45,"dasamn@gmail.com","09003829");
-        if (result > 0) {
-            System.out.println("new user added");
-        }
     }
 }

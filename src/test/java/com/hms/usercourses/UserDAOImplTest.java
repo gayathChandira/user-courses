@@ -1,23 +1,31 @@
 package com.hms.usercourses;
 
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
+
+@Repository
 class UserDAOImplTest {
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
-    UserDAOImpl dao = new UserDAOImpl();
-
+    @Autowired
+    private UserDAOImpl dao;
+    //UserDAOImpl dao = new UserDAOImpl();
 
     @Test
     void findUser() {
         User usr = dao.findUser(1);
         System.out.println("User name : " + usr.getF_name());
-        assertThat("sunil").isEqualTo(usr.getF_name());
+        assertThat("Pradeep").isEqualTo(usr.getF_name());
     }
 
     @Test
@@ -25,7 +33,7 @@ class UserDAOImplTest {
         List<User> usr = dao.findAllUsers();
         assertThat(usr).isNotNull();
         User result = usr.get(0);
-        assertThat(result).hasFieldOrPropertyWithValue("f_name", "sunil");
+        assertThat(result).hasFieldOrPropertyWithValue("f_name", "Pradeep");
     }
 
     @Test
@@ -57,7 +65,7 @@ class UserDAOImplTest {
     @Test
     void deleteUser(){
         User usr = new User();
-        usr.setUser_id(3);
+        usr.setUser_id(4);
         assertThat(dao.deleteUser(usr)).isTrue();
     }
 }
