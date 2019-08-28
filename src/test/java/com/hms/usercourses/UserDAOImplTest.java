@@ -2,24 +2,21 @@ package com.hms.usercourses;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@SpringBootTest
 @Repository
+
 class UserDAOImplTest {
     @Autowired
-    JdbcTemplate jdbcTemplate;
-
-    @Autowired
     private UserDAOImpl dao;
-    //UserDAOImpl dao = new UserDAOImpl();
 
     @Test
     void findUser() {
@@ -65,7 +62,7 @@ class UserDAOImplTest {
     @Test
     void deleteUser(){
         User usr = new User();
-        usr.setUser_id(4);
+        usr.setUser_id(6);
         assertThat(dao.deleteUser(usr)).isTrue();
     }
 }
